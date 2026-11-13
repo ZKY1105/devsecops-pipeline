@@ -1,0 +1,35 @@
+Answer Task 1 
+
+CI/CD Concepts 
+
+CD vs. Deployment: 
+Continuous Integration (CI) is the practice of automatically building and testing code changes whenever they are pushed to version control. 
+Continuous Delivery (CD) automates the release process up to the point of staging/production readiness, meaning the software can be released at any time but requires a manual trigger or approval.
+
+Continuous Deployment takes it a step further by automatically deploying every passing change directly to production without manual intervention.
+
+Problems & solutions:
+Untested broken code reaching main= Fixed by Automated Testing.
+Exposed API keys/secrets committed to code- Fixed by Secret 
+Scanning / Push Protection.Vulnerable dependencies going unnoticed= Fixed by Automated Dependency Scanning.
+Lack of consistency/manual merging errors= Fixed by Automated CI/CD Workflows & Gates.
+
+Pull Request vs. Push to Main ("Shift Left"): 
+
+Running security checks on a pull request before merging catches vulnerabilities and bugs earlier in the development lifecycle ("shifting left") rather than discovering them after they are already merged into the production branch.
+
+Definitions:
+Workflow: A configurable automated process defined in YAML that runs one or more jobs.
+Job: A set of steps executed on the same runner within a workflow.
+Step: An individual task or shell command executed within a job.
+Runner: A server (hosted or self-hosted) that executes workflows when triggered.
+Action: A reusable, pre-packaged unit of code designed for use in workflows (e.g., actions/checkout@v4).
+
+Local npm audit vs. Pipeline Scanning
+Running npm audit locally depends on the developer remembering to run it, can be bypassed, and only checks their local machine state at that moment. A pipeline scan runs centrally and automatically on every single PR, enforcing mandatory organization-wide compliance before code can ever enter main.
+
+Answer Task 2 Requirements 
+
+I. Why npm ci over npm install? npm ci (Clean Install) installs dependencies strictly from package-lock.json, ensures a clean build environment by deleting node_modules first, and throws an error if lockfile discrepancies exist, making builds reproducible and reliable.
+
+II. Why .github/workflows/? GitHub Actions specifically looks inside the .github/workflows directory in the repository root to discover and execute workflow configuration files.
