@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../server");
+const app = require("./server");
 
 describe("API Endpoints", () => {
   it("should return a welcome message on GET /", async () => {
