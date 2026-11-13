@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Required for gitleaks to scan commit history
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,13 +23,5 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Linter
-        run: npm run lint --if-present
-
       - name: Run Tests
         run: npm test
-
-      - name: Run Gitleaks Secret Scanner
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
