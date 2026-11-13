@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
-const FAKE_API_KEY = "AKIAIOSFODNN7EXAMPLE";
+// Test secret for Task 3
+const testSecret = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 app.use(express.json());
 
