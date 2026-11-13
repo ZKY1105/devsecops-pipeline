@@ -33,3 +33,43 @@ Answer Task 2 Requirements
 I. Why npm ci over npm install? npm ci (Clean Install) installs dependencies strictly from package-lock.json, ensures a clean build environment by deleting node_modules first, and throws an error if lockfile discrepancies exist, making builds reproducible and reliable.
 
 II. Why .github/workflows/? GitHub Actions specifically looks inside the .github/workflows directory in the repository root to discover and execute workflow configuration files.
+
+Task 3
+
+Task 3.1: A committed secret remains permanently embedded in Git history via commit logs, allowing anyone with repository access to extract it even if deleted in later commits.
+
+Task 3.2: GitHub Secret Scanning / Automated workflow scanning patterns.
+
+Task 3.4: Immediately revoke/rotate the leaked credential at the provider, audit access logs, purge the secret from history, and enforce automated checks.
+
+Task 3.5: Local secrets belong in .env (ignored by Git); pipeline/production secrets belong in encrypted platform secrets (like GitHub Actions Secrets).
+
+Answers for Task 4
+
+
+Task 4.1 (Difference between SCA and SAST):
+
+SCA (Software Composition Analysis / Dependency Scanning): Analyzes third-party open-source libraries and dependencies (node_modules) for known security vulnerabilities and outdated versions (e.g., using npm audit).
+
+SAST (Static Application Security Testing): Analyzes your custom source code and scripts for security flaws, insecure coding patterns, and logic vulnerabilities without executing the program.
+
+Task 4.2 (Tool/Method used): npm audit integrated into the GitHub Actions CI pipeline to scan project dependencies automatically on every push.
+
+Task 4.3 (Handling a vulnerability alert):
+
+Review the advisory to see which package and version introduced the vulnerability.
+
+Run npm update <package> or patch/upgrade the dependency version in package.json.
+
+If no patch is available, evaluate if the vulnerable function is actually used, and apply mitigating controls or switch to an alternative package.
+
+Task 4.4 (Why dependency scanning belongs in CI): Catching vulnerable packages automatically during CI prevents insecure code or compromised libraries from ever being merged into the main branch or deployed to production environments.
+
+Answers for Task 5
+
+
+Task 5.1 (Purpose of a security gate in a CI/CD pipeline): A security gate automatically evaluates code against predefined security criteria (like passing unit tests, zero critical vulnerabilities, or no hardcoded secrets) and halts the pipeline or blocks merging if a failure occurs, preventing insecure code from reaching production.
+
+Task 5.2 (How branch protection rules enforce security): Branch protection enforces policies directly at the repository level—such as requiring pull requests and successful status checks from your CI pipeline—ensuring that developers cannot bypass automated security gates or push directly to main.
+
+Task 5.3 (Why direct pushes to main are discouraged in DevSecOps): Direct pushes bypass peer code reviews, skip automated tests, and evade security scanning gates, introducing a high risk of regression, vulnerabilities, or unverified code entering the production environment.
