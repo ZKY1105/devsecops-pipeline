@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
+const FAKE_API_KEY = "AKIAIOSFODNN7EXAMPLE";
 
 app.use(express.json());
 
